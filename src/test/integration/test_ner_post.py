@@ -30,7 +30,7 @@ def test_ner_delete():
                              json={"text": "Apple is a company"},
                               headers={"Authorization": token})
     assert response2.status_code == 200
-
+    print(response2.json()['text_id'])
     response3 = requests.delete(ENDPOINT_DELETE_NER, json={"text_id": response2.json()['text_id']},
                             headers={"Authorization": token})
     assert response3.status_code == 200

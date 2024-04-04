@@ -83,7 +83,7 @@ def handle_ner_get(current_user, *args, **kwargs):
                     status=404,
                     mimetype='application/json'
                 )
-            if text.user_id != current_user.id or current_user.role != "admin":
+            if text.user_id != current_user.id and current_user.role != "admin":
                 return Response(
                     response=json.dumps({'status': "failed", "message": "Unauthorized"}),
                     status=401,
@@ -138,7 +138,7 @@ def handle_ner_delete(current_user,*args, **kwargs):
                     status=404,
                     mimetype='application/json'
                 )
-            if textdata.user_id != current_user.id or current_user.role != "admin":
+            if textdata.user_id != current_user.id and current_user.role != "admin":
                 return Response(
                     response=json.dumps({'status': "failed", "message": "Unauthorized"}),
                     status=401,
