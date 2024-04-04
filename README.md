@@ -1,8 +1,14 @@
 # Named Entity Recognition as a Flask Service
+
 The NER Flask Service is a comprehensive RESTful API system designed to provide Named Entity Recognition (NER) services. Built on Flask, it integrates spaCy for NER, employs SQLAlchemy for data management, and emphasizes security and efficiency. It caters to a wide range of users, from individuals submitting texts for entity recognition.
 
+Find API docs in 
+
+``API_docs.md``
+
 ## Getting Started
-You should have python 3.11 and above
+
+You should have python 3.11 and above. Below steps are for macOS/linux
 To get started with this project, follow the steps below:
 
 1. Run the `init_setup.sh` script using bash:
@@ -21,6 +27,7 @@ To get started with this project, follow the steps below:
    python3 -m src.app
    ```
 4. Test the application:
+   Run this commad after running 3 in a seperate terminal window
 
    ```
    python3 -m pytest src
@@ -34,16 +41,18 @@ To get started with this project, follow the steps below:
 - JWT for Authentication: Facilitates secure user authentication and authorization across the application, with JWT tokens ensuring that endpoints and actions are protected.
 
 ## Enhanced Features and Security Measures
+
 - Advanced User Roles and Permissions:
 - Admin Rights: Admin users possess the ability to delete any user account and remove any NER submissions across the platform, ensuring they can manage the application's content and user base effectively.
 - User Privacy and Security: Regular users can manage their submissions and profile but have restricted access compared to admins.
 
 ## Security Practices:
+
 - Password Encryption: Utilizing bcrypt for hashing passwords, thereby enhancing the security of user credentials stored in the database.
 - Token Encryption: JWT tokens are encrypted, providing a secure means of user authentication and session management.
 
+## Files
 
-## Files 
 This project contains the following files and directories:
 
 - API_docs.md: Contains all the API documentation, including input and output expectations.
@@ -63,4 +72,3 @@ This project contains the following files and directories:
 - src/__init__.py: Provides information and fetches files from here.
 - src/routes.py: Registers the Flask blueprints for the user, auth, and NER services.
 - src/app.py: Runs the Flask server.
-
