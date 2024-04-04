@@ -11,6 +11,10 @@ Find API docs in
 You should have python 3.11 and above. Below steps are for macOS/linux
 To get started with this project, follow the steps below:
 
+After clonning the repo using this link 
+
+``https://github.com/parthjain99/NER_FLASK_SERVICE.git``
+
 1. Run the `init_setup.sh` script using bash:
 
    ```
