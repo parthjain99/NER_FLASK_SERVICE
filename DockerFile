@@ -1,17 +1,19 @@
 # Specify the base image
-FROM <base_image>
+FROM python:3.11.0-slim-buster
 
 # Set the working directory
-WORKDIR /app
+WORKDIR /LUCRA_AI
 
 # Copy the application files to the container
 COPY . .
 
 # Install dependencies (if any)
-RUN <command_to_install_dependencies>
+
+RUN ./init_setup.sh
 
 # Expose the necessary ports
-EXPOSE 8000
+EXPOSE 3000
 
 # Define the command to run the application
-CMD <command_to_run_application>
+CMD python3 app.py
+
