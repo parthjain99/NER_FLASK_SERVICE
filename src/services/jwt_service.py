@@ -39,12 +39,12 @@ def token_required(f):
                     "error": "Unauthorized"
                 }, 401
         except Exception as e:
-            logger.error(f"Error authenticating user: {e}")
+            logger.critical("User could not be authenticated!")
             return {
-                "message": "Something went wrong",
+                "message": "Invalid Authentication token!",
                 "data": None,
-                "error": str(e)
-            }, 500
+                "error": "Unauthorized"
+            }, 401
         logger.info("User is authenticated!")
         return f(current_user, *args, **kwargs)
 

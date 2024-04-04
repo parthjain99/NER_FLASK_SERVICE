@@ -53,7 +53,7 @@ def update_user(current_user):
             logger.info("User data updated successfully")
             return jsonify({
                 "message": "successfully updated account",
-                "data": user
+                "status": "successs"
             }), 201
         if user.get("lastname"):
             User.query.filter_by(id=current_user.id).update({
@@ -63,7 +63,7 @@ def update_user(current_user):
             logger.info("User data updated successfully")
             return jsonify({
                 "message": "successfully updated account",
-                "data": user
+                "status": "success"
             }), 201
         logger.critical("Invalid data, you can only update your account name!")
         return {
@@ -100,9 +100,9 @@ def disable_user(current_user):
             "data": None
         }), 204
     except Exception as e:
-        logger.critical("Error occurred while disabling user account")
+        logger.critical("User already disabled user account")
         return jsonify({
-            "message": "failed to disable account",
+            "message": "User not found",
             "error": str(e),
             "data": None
         }), 400

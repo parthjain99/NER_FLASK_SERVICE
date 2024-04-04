@@ -76,11 +76,17 @@ def handle_ner_get(current_user, *args, **kwargs):
         data = request.json
         if data:
             entities = NamedEntity.query.filter_by(text_id = data['text_id']).all()
-            text = TextData.query.filter_by(text_id = data['text_id'], user_id = current_user.id).first()
+            text = TextData.query.filter_by(text_id = data['text_id']).first()
             if not entities:
                 return Response(
                     response=json.dumps({'status': "failed", "message": "No entities found"}),
                     status=404,
+                    mimetype='application/json'
+                )
+            if text.user_id != current_user.id or current_user.role != "admin":
+                return Response(
+                    response=json.dumps({'status': "failed", "message": "Unauthorized"}),
+                    status=401,
                     mimetype='application/json'
                 )
             entities_list = []
@@ -125,16 +131,22 @@ def handle_ner_delete(current_user,*args, **kwargs):
         data = request.json
         if 'text_id' in data:
             entities = NamedEntity.query.filter_by(text_id = data['text_id']).all()
+            textdata = TextData.query.filter_by(text_id = data['text_id']).first()
             if not entities:
                 return Response(
                     response=json.dumps({'status': "failed", "message": "No entities found"}),
-                    status=200,
+                    status=404,
+                    mimetype='application/json'
+                )
+            if textdata.user_id != current_user.id or current_user.role != "admin":
+                return Response(
+                    response=json.dumps({'status': "failed", "message": "Unauthorized"}),
+                    status=401,
                     mimetype='application/json'
                 )
             for entity in entities:
                 db.session.delete(entity)
             db.session.commit()
-            textdata = TextData.query.filter_by(text_id = data['text_id'], user_id = current_user.id).first()
             db.session.delete(textdata)
             db.session.commit()
             logger.info("NER Delete successful")
