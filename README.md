@@ -76,3 +76,5 @@ This project contains the following files and directories:
 - src/__init__.py: Provides information and fetches files from here.
 - src/routes.py: Registers the Flask blueprints for the user, auth, and NER services.
 - src/app.py: Runs the Flask server.
+- 
+<img src="https://t.bkit.co/w_661d8a69e7eb8.gif" />
